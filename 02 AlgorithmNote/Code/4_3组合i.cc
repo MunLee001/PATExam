@@ -3,9 +3,7 @@
 using namespace std;
 
 int g_n = 0, g_k = 0;
-int g_hastTable[15] = {0};
 vector<int> g_resultTemp;
-vector<vector<int>> g_result;
 
 static void GetCombinationK(int start)
 {
@@ -14,17 +12,17 @@ static void GetCombinationK(int start)
             printf("%d ", g_resultTemp[i]);
         }
         printf("%d\n", g_resultTemp[g_k - 1]);
-    } else {
-        for (int i = start; i <= g_n; ++i) {     // 从小到大排列
-            if (g_hastTable[i] == false) {       // 还未加入组合中
-                g_resultTemp.push_back(i);
-                g_hastTable[i] = true;
-                GetCombinationK(i + 1);          // 不允许
-                g_resultTemp.pop_back();
-                g_hastTable[i] = false;
-            }
-        }
+        return;
     }
+
+    if (start > g_n) {
+        return;
+    }
+
+    g_resultTemp.push_back(start);
+    GetCombinationK(start + 1);
+    g_resultTemp.pop_back();
+    GetCombinationK(start + 1);
 }
 
 int main()
@@ -33,4 +31,3 @@ int main()
     GetCombinationK(1);
     return 0;
 }
-
