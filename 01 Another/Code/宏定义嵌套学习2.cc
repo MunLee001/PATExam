@@ -6,12 +6,9 @@
 
 #define PARAM(x) #x
 #define ADDPARAM(x) INT_##x
- 
-int main()
-{
-	const char *str = TO_STRING(TO_STRING2(PARAM(ADDPARAM(1))));
-	printf("%s\n",str); //输出: a_PARAM(INT_1)
-	return 0;
+
+int main() {
+  const char *str = TO_STRING(TO_STRING2(PARAM(ADDPARAM(1))));
+  printf("%s\n", str);  // 输出: a_PARAM(ADDPARAM(1))
+  return 0;
 }
-
-
